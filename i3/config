@@ -76,36 +76,49 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindcode $mod+d focus child
 
+# define workspaces
+set $w1 1:main
+set $w2 2:web
+set $w3 3:code
+set $w4 4:file
+set $w5 5:media
+set $w6 6:irc
+set $w7 7
+set $w8 8
+set $w9 9:float
+set $w0 0:misc
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w0
 
 # move focused container to workspace
-bindsym $mod+Shift+exclam move workspace 1
-bindsym $mod+Shift+at move workspace 2
-bindsym $mod+Shift+numbersign move workspace 3
-bindsym $mod+Shift+dollar move workspace 4
-bindsym $mod+Shift+percent move workspace 5
-bindsym $mod+Shift+asciicircum move workspace 6
-bindsym $mod+Shift+ampersand move workspace 7
-bindsym $mod+Shift+asterisk move workspace 8
-bindsym $mod+Shift+parenleft move workspace 9
-bindsym $mod+Shift+parenright move workspace 10
+bindsym $mod+Shift+exclam move workspace $w1
+bindsym $mod+Shift+at move workspace $w2
+bindsym $mod+Shift+numbersign move workspace $w3
+bindsym $mod+Shift+dollar move workspace $w4
+bindsym $mod+Shift+percent move workspace $w5
+bindsym $mod+Shift+asciicircum move workspace $w6
+bindsym $mod+Shift+ampersand move workspace $w7
+bindsym $mod+Shift+asterisk move workspace $w8
+bindsym $mod+Shift+parenleft move workspace $w9
+bindsym $mod+Shift+parenright move workspace $w0
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+E exit
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -154,9 +167,11 @@ bar {
 }
 
 # workspace assignment
-assign [class="^Google-chrome$"] 2
-assign [class="^Xchat$"] 3
-assign [class="^Nautilus$"] 4
+assign [class="^Google-chrome$"] $w2
+assign [class="^Xchat$"] $w6
+assign [class="^Nautilus$"] $w4
+assign [class="^Vlc$"] $w5
+assign [class="^banshee$"] $w5
 
 #custom window settings
 for_window [class="^Google-chrome$"] border none
@@ -182,3 +197,6 @@ bindsym XF86AudioMute exec /usr/bin/pactl set-sink-volume 0 0
 bindsym XF86Launch1 exec /usr/bin/pactl play-sample that_was_easy
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
+
+# Move the current workspace to the next output
+bindsym $mod+x move workspace to output right

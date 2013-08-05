@@ -15,6 +15,7 @@ alias sv="sudo vim"
 alias hapd="sudo iptables -t nat -A POSTROUTING -s 10.10.0.0/16 -o ppp0 -j MASQUERADE"
 alias virtualenvwrapper="source ~/scripts/virtualenvwrapper.sh"
 alias i3config="vim ~/.i3/config"
+alias shutdown="sudo shutdown -P now"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
@@ -62,6 +63,7 @@ export PATH="/home/rabisg/Documents/scala/bin:$PATH"
 export PATH="/home/rabisg/Documents/play:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:$HOME/gcutil-1.8.2"
 eval "$(rbenv init -)"
 
 #VirtualEnvWrapper
