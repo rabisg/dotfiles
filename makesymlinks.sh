@@ -5,7 +5,7 @@
 ########## Variables
 
 dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
+olddir=~/dotfiles/old             # old dotfiles backup directory
 ##########
 
 # create dotfiles_old in homedir
