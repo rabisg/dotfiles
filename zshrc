@@ -5,17 +5,19 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="bira"
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias vimconfig="vim ~/.vimrc"
-alias unset_proxy="unset http_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY"
+alias unset_proxy="unset http_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY ftp_proxy"
 alias sv="sudo vim"
 alias hapd="sudo iptables -t nat -A POSTROUTING -s 10.10.0.0/16 -o ppp0 -j MASQUERADE"
 alias virtualenvwrapper="source ~/scripts/virtualenvwrapper.sh"
 alias i3config="vim ~/.i3/config"
 alias shutdown="sudo shutdown -P now"
+alias tree="tree -CA"
+alias gd="git diff --cached"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
@@ -45,7 +47,7 @@ source $ZSH/oh-my-zsh.sh
 source /etc/zsh_command_not_found
 
 # Customize to your needs...
-RPS1="in %{$fg_bold[green]%}[%d]%{$reset_color%}"
+# RPS1="in %{$fg_bold[green]%}[%d]%{$reset_color%}"
 
 #zstyle ':completion:*' verbose yes
 #zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -59,12 +61,15 @@ RPS1="in %{$fg_bold[green]%}[%d]%{$reset_color%}"
 export BROWSER="chrome"
 export EDITOR="vim"
 #export PAGER="vimpager"
-export PATH="/home/rabisg/Documents/scala/bin:$PATH"
-export PATH="/home/rabisg/Documents/play:$PATH"
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$PATH:$HOME/gcutil-1.8.2"
+#export PATH="/home/rabisg/Documents/scala/bin:$PATH"
+export PATH="$PATH:$HOME/Documents/play"
+export PATH="$PATH:/usr/local/heroku/bin"
+export PATH="$PATH:$HOME/.rbenv/bin"
+export PATH="$PATH:$HOME/gcutil"
 eval "$(rbenv init -)"
 
 #VirtualEnvWrapper
 export WORKON_Home=~/.virtualenv
+
+# FASD init
+eval "$(fasd --init auto)"

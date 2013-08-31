@@ -172,15 +172,27 @@ assign [class="^Xchat$"] $w6
 assign [class="^Nautilus$"] $w4
 assign [class="^Vlc$"] $w5
 assign [class="^banshee$"] $w5
+assign [class="^Sublime_text$"] $w3
+assign [class="^Transmission-gtk$"] $w0
+assign [class="^Eiskaltdcpp-gtk$"] $w0
+
 
 #custom window settings
 for_window [class="^Google-chrome$"] border none
 
-#Start chrome on login
+#Start Applications
+exec /home/rabisg/.fehbg
 exec google-chrome
 exec xchat
 exec nautilus
 exec i3-sensible-terminal
+exec subl
+exec 'syndaemon -i 0.8 -d -k'
+exec ssh-agent
+exec transmission-gtk
+exec eiskaltdcpp-gtk
+exec nm-applet
+exec gnome-sound-applet
 
 # Set screen lock Ctrl+Alt+l and Win+l
 bindsym control+Mod1+l exec i3lock -c 000000 -d
@@ -194,7 +206,6 @@ bindsym $mod+o scratchpad show
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -- '-5%'
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 -- '+5%'
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-volume 0 0
-bindsym XF86Launch1 exec /usr/bin/pactl play-sample that_was_easy
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
 
