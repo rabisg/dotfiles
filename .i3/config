@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -17,8 +17,15 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+set $term urxvt
+set $browser google-chrome-stable
+set $file_browser "urxvt -T ranger -e ranger"
+#set $file_browser thunar
+set $irc_client "urxvt -T weechat -e weechat"
+set $editor "emacs"
+
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Tab exec $term
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -83,7 +90,7 @@ set $w3 3:code
 set $w4 4:file
 set $w5 5:media
 set $w6 6:irc
-set $w7 7
+set $w7 7:pdf
 set $w8 8
 set $w9 9:float
 set $w0 0:misc
@@ -167,36 +174,46 @@ bar {
 }
 
 # workspace assignment
-assign [class="^Google-chrome$"] $w2
+assign [class="^Google-chrome"] $w2
+assign [class="^Firefox$"] $w2
 assign [class="^Xchat$"] $w6
 assign [class="^Nautilus$"] $w4
+assign [class="^Thunar$"] $w4
 assign [class="^Vlc$"] $w5
 assign [class="^banshee$"] $w5
-assign [class="^Sublime_text$"] $w3
-assign [class="^Transmission-gtk$"] $w0
-assign [class="^Eiskaltdcpp-gtk$"] $w0
-
+assign [class="^Subl$"] $w3
+assign [class="^Emacs$"] $w3
+assign [class="^Transmission"] $w0
+assign [class="^Eiskaltdcpp"] $w0
+assign [class="^Evince$"] $w7
+assign [title="^irssi$"] $w6
+assign [title="^weechat$"] $w6
+assign [title="^cmus$"] $w5
+assign [title="^ranger$"] $w4
 
 #custom window settings
-for_window [class="^Google-chrome$"] border none
+for_window [class="^Google-chrome"] border none
+for_window [class="^Firefox$"] border none
+for_window [class="^Emacs$"] border none
+for_window [title="^ranger$"] border none
+for_window [title="^weechat$"] border none
 
 #Start Applications
 exec /home/rabisg/.fehbg
-exec google-chrome
-exec xchat
-exec nautilus
-exec i3-sensible-terminal
+exec $browser
+exec $irc_client
+exec $file_browser
+exec $term
+#exec $editor
 exec subl
-exec 'syndaemon -i 0.8 -d -k'
-exec ssh-agent
-exec transmission-gtk
-exec eiskaltdcpp-gtk
-exec nm-applet
-exec gnome-sound-applet
+#exec 'syndaemon -i 0.8 -d -k'
+#exec transmission-gtk
+#exec eiskaltdcpp-qt
+#exec nm-applet
+#exec gnome-sound-applet
 
 # Set screen lock Ctrl+Alt+l and Win+l
-bindsym control+Mod1+l exec i3lock -c 000000 -d
-bindsym Mod4+l exec i3lock -c 000000 -a -d
+bindsym Control+Mod1+l exec i3lock -c 000000 -d
 
 # scratchpad
 bindsym $mod+m move scratchpad
@@ -205,9 +222,10 @@ bindsym $mod+o scratchpad show
 # pulse audio volume control
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -- '-5%'
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 -- '+5%'
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-volume 0 0
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 toggle
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
+bindsym XF86TouchpadToggle exec /usr/local/bin/touchpadToggle
 
 # Move the current workspace to the next output
 bindsym $mod+x move workspace to output right
