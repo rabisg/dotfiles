@@ -1,0 +1,117 @@
+!-------------------------------!
+!              Xft              !
+!-------------------------------!
+Xft.antialias:          1
+Xft.autohint:           0
+Xft.dpi:                112
+Xft.hinting:            1
+Xft.hintstyle:          hintfull
+Xft.lcdfilter:          lcddefault
+Xft.rgba:               rgb
+!-------------------------------!
+!            Xcursor            !
+!-------------------------------!
+Xcursor*theme:                  Neutral_Plus
+
+!-------------------------------!
+!             XTerm             !
+!-------------------------------!
+!XTerm*jumpScroll:               true
+!XTerm*multiScroll:              true
+!XTerm*boldColors:               false
+!XTerm*boldMode:                 false
+!XTerm*colorBD:                  MediumBlue
+!XTerm*colorBDMode:              true
+!XTerm*underLine:                true
+!XTerm*colorUL:                  #1FA638
+!XTerm*colorULMode:              true
+!XTerm*scrollTtyOutput:          false
+!XTerm*scrollKey:                true
+!XTerm*bellIsUrgent:             true
+!XTerm*highlightColor:           LightSkyBlue
+!XTerm*cursorColor:              MediumBlue
+!XTerm*pointerColor:             MediumBlue
+!XTerm*internalBorder:           3
+!XTerm*scrollBar:                true
+!XTerm*rightScrollBar:           true
+!XTerm*loginShell:               true
+!XTerm*saveLines:                65535
+!XTerm*charClass:                33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48,35:48,58:48
+!
+!-------------------------------!
+!             Aterm             !
+!-------------------------------!
+!Aterm*transparent:              true
+!Aterm*tinting:                  white
+!Aterm*loginShell:               true
+!Aterm*saveLines:                65535
+!Aterm*scrollTtyOutput:          false
+!Aterm*shading:                  50
+!Aterm*tintingType:              true
+!
+!-------------------------------!
+!             URxvt             !
+!-------------------------------!
+URxvt*loginShell:               true
+URxvt*saveLines:                65535
+URxvt*depth:                    32
+URxvt*scrollBar:                false
+URxvt*scrollTtyOutput:          false
+URxvt*scrollWithBuffer:         true
+URxvt*scrollTtyKeypress:        true
+!URxvt*internalBorder:           0
+!URxvt*borderLess:               true
+!URxvt*tabbed*new-button:        false
+!URxvt*pointerBlank:             true
+!URxvt*pointerBlankDelay:        5
+urxvt.urgentOnBell:             true
+URxvt*fading:                   10
+URxvt*font:                     xft:Source Code Pro:Regular:size=9:antialias=true,xft:Dejavu Sans Mono:size=8:antialias=true
+URxvt*intensityStyles:          true
+URxvt*urgentOnBell:             true
+URxvt*perl-ext:                 default,matcher,clipboard,keyboard-select,tabbedex,font-size
+URxvt*url-launcher:             google-chrome-stable
+URxvt*matcher.button:           1
+URxvt*secondaryWheel:           true
+URxvt*underlineURLs:            true
+URxvt*no-tabbedex-keys:         true
+URxvt.transparent:   		true
+URxvt.shading:       		10
+URxvt*keysym.S-Down:            perl:tabbedex:new_tab
+URxvt*keysym.S-Left:            perl:tabbedex:prev_tab
+URxvt*keysym.S-Right:           perl:tabbedex:next_tab
+URxvt*keysym.M-Escape:          perl:keyboard-select:activate
+URxvt*keysym.M-c:               perl:clipboard:copy
+URxvt*keysym.M-v:               perl:clipboard:paste
+URxvt*keysym.M-C-v:             perl:clipboard:paste_escaped
+URxvt*keysym.M-u:               perl:url-select:select_next
+URxvt.keysym.C-S-Up:            perl:font-size:increase
+URxvt.keysym.C-S-Down:          perl:font-size:decrease
+! Colors
+URxvt*colorBD:                  #A9CDEB
+URxvt*colorUL:                  #EA96EB
+URxvt*colorIT:                  #C9CAEC
+
+! Molokai
+URxvt*background:               rgba:1B00/1D00/1E00/dddd
+*background:                    #1B1D1E
+*cursorColor:                   #0A9DFF
+*foreground:                    #FFFFFF
+*highlightColor:                #0A9DFF
+
+*color0:                        #000000
+*color1:                        #FF0000
+*color2:                        #A6E22E
+*color3:                        #FD971F
+*color4:                        #AE81FF
+*color5:                        #F92672
+*color6:                        #66D9EF
+*color7:                        #F2F2F2
+*color8:                        #5D5D5D
+*color9:                        #FF0000
+*color10:                       #A6E22E
+*color11:                       #FD971F
+*color12:                       #AE81FF
+*color13:                       #F92672
+*color14:                       #66D9EF
+*color15:                       #FFFFFF
