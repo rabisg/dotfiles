@@ -1,0 +1,6 @@
+[user]
+	email = guha.rabishankar@gmail.com
+	name = Rabi Shanker Guha
+
+[pull]
+	rebase = true
