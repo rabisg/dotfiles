@@ -21,10 +21,14 @@
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(flycheck
+   '(dart-mode
+     flycheck
      haskell-mode
+     magit
      solarized-theme
+     scss-mode
      undo-tree
+     web-mode
      yaml-mode)
   ))
 
@@ -33,8 +37,6 @@
   (error
    (package-refresh-contents)
    (init--install-packages)))
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Set up themes/colors
 (require 'appearance)
@@ -54,7 +56,20 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Load site specific customizations
-(eval-after-load 'haskell-mode '(require 'setup-haskell-mode))
+(defun load-directory (directory)
+  "Load recursively all `.el' files in DIRECTORY."
+  (dolist (element (directory-files-and-attributes directory nil nil nil))
+    (let* ((path (car element))
+           (fullpath (concat directory "/" path))
+           (isdir (car (cdr element)))
+           (ignore-dir (or (string= path ".") (string= path ".."))))
+      (cond
+       ((and (eq isdir t) (not ignore-dir))
+        (load-directory fullpath))
+       ((and (eq isdir nil) (string= (substring path -3) ".el"))
+        (load (file-name-sans-extension fullpath)))))))
+
+(load-directory "~/.emacs.d/config")
 
 (provide 'init)
 ;;; init.el ends here
