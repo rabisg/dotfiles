@@ -3,6 +3,7 @@ import System.IO
 import System.Exit
 
 import XMonad
+import XMonad.Actions.SpawnOn (spawnOn)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import qualified XMonad.StackSet as W
@@ -22,19 +23,41 @@ myWorkSpaces = ["term", "web", "code", "file", "media", "irc", "doc"] ++ map sho
 -- | Defines the workspace an application has to go
 myManageHook = composeAll . concat $
                [
-                 [ className =? b --> viewShift "web"       | b <- webApplications ]
+                 -- HACK
+                 [ title     =? "i-urxvt" --> viewShift "term" ]
+               , [ className =? b --> viewShift "web"       | b <- webApplications ]
                , [ className =? e --> viewShift "code"      | e <- editors ]
+               , [ title     =? f --> viewShift "file"      | f <- fileManagers ]
+               , [ className =? f --> viewShift "file"      | f <- fileManagers ]
                , [ className =? m --> doF (W.shift "media") | m <- mediaApplications ]
-               , [ className =? c --> doF (W.shift "irc")   | c <- chatApplications ]
+               , [ title     =? c --> doF (W.shift "irc")   | c <- chatApplications ]
                , [ className =? d --> viewShift "doc"       | d <- docApplications ]
                ]
     where
-      viewShift = doF . liftM2 (.) W.greedyView W.shift
-      webApplications = [ "Firefox", "Google-chrome" ]
-      chatApplications = [ "weechat", "irssi", "XChat" ]
-      editors = [ "Emacs", "Subl" ]
-      docApplications = [ "Evince", "LibreOffice" ]
+      viewShift         = doF . liftM2 (.) W.greedyView W.shift
+      webApplications   = [ "Firefox", "Google-chrome-stable" ]
+      fileManagers      = [ "ranger", "Thunar" ]
+      chatApplications  = [ "weechat", "irssi", "XChat" ]
+      editors           = [ "Emacs", "Subl" ]
+      docApplications   = [ "Evince", "LibreOffice" ]
       mediaApplications = [ "Vlc", "cmus" ]
+
+myStartupHook :: X ()
+myStartupHook = do
+  spawn browser
+  spawn editor
+  spawn fileManager
+  spawn irc
+  -- Hack to spawn Terminal on WS term
+  spawn "urxvt -T i-urxvt"
+  where
+    browser     = "google-chrome-stable"
+    editor      = "emacs"
+    irc         = inTerminal "weechat"
+    fileManager = inTerminal "ranger"
+    -- Terminal applications
+    inTerminal :: String -> String
+    inTerminal x = myTerminal ++ " -T " ++ x ++ " -e " ++ x
 
 keysToRemove :: [String]
 keysToRemove = [ "M-p"   -- Remove default dmenu keybinding
@@ -74,6 +97,7 @@ main = do
                    { ppOutput = hPutStrLn xmproc
                    , ppTitle = xmobarColor "green" "" . shorten 50
                    }
+       , startupHook = myStartupHook
        }
        `removeKeysP` keysToRemove
        `additionalKeysP` keysToAdd
